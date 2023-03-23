@@ -1,0 +1,56 @@
+---
+import Title from "../components/Title.astro";
+import Heading from "../components/Heading.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="SNGR - Songwriter's Next Generation Resource">
+  <main class="max-w-sm p-3 m-auto bg-orange-100 md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl">
+    <Title>Welcome to the <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">SNGR</span> revolution.</Title>
+    <Heading>
+      Unleash Your Creativity with the Songwriter's Next Generation Resource
+    </Heading>
+    <p class="p-4 my-2 rounded-lg bg-orange-50">
+      SNGR harnesses the power of GPT-4 technology to help you craft original
+      songs, generate lyrics, and create captivating melodies.
+    </p>
+    <Heading>Innovative Features to Fuel Your Creativity</Heading>
+    <Heading>Trusted by Musicians and Songwriters Worldwide</Heading>
+    <Heading>Choose the Perfect Plan for You</Heading>
+  </main>
+</Layout>
+
+<style>
+  .text-gradient {
+    background-image: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  .instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>
