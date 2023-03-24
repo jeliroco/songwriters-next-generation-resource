@@ -1,8 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	theme: {
-		extend: {},
-	},
+  theme: {
+    extend: {
+      animation: {
+        'flip-to-front': 'flip-to-front 0.5s',
+        'flip-to-back': 'flip-to-back 0.5s',
+      },
+      keyframes: {
+        'flip-to-front': {
+          '0%': { transform: 'rotateY(180deg)' },
+          '100%': { transform: 'rotateY(0deg)' },
+        },
+        'flip-to-back': {
+          '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(180deg)' },
+        },
+      },
+    },
+  },
+  variants: {
+    extend: {
+      transform: ['hover', 'focus'],
+    },
+  },
 	plugins: [],
 }

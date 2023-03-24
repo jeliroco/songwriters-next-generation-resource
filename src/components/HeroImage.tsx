@@ -28,13 +28,13 @@ const HeroImage: React.FC<HeroImageProps> = ({
   }, []);
 
   return (
-    <div className="relative overflow-hidden h-[32rem]">
+    <div className="border-2 border-orange-200 relative overflow-hidden h-[32rem]">
       <div
         ref={heroImageRef}
         className={`absolute inset-0 w-full h-full ${backgroundPosition} bg-fill bg-no-repeat`}
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        <div className="absolute inset-0 mix-blend-light bg-white/50"></div>
+        <div className="absolute inset-0 mix-blend-lighten bg-white/50"></div>
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <div>{children}</div>
         </div>

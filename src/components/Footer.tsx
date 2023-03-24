@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
 
   return (
     <>
-      <footer ref={FooterRef} className="fixed bottom-0 left-0 right-0 z-10 flex p-1 duration-300 ease-in-out bg-orange-400 opacity-0 translate-y-14">
+      <footer ref={FooterRef} className="fixed bottom-0 left-0 right-0 z-[1000] flex p-1 duration-300 ease-in-out bg-orange-400 border-t-2 border-orange-500 opacity-0 translate-y-14">
         <div className="flex-1 text-center">copyright 2023 by jeliroco. All rights reserved.</div>
       </footer>
       <div className="h-10"></div>

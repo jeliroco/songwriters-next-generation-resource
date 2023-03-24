@@ -1,19 +1,21 @@
 ---
 import Title from "../components/Title";
-import Heading from "../components/Heading.astro";
+import Heading from "../components/Heading";
 import Layout from "../layouts/Layout.astro";
 import FreeTrialButton from "../components/FreeTrialButton";
 import HeroImage from "../components/HeroImage";
+import Grid from "../components/Grid";
+import FeatureCard from "../components/FeatureCard";
 import "bootstrap-icons/font/bootstrap-icons.css";
 ---
 
 <Layout title="SNGR - Songwriter's Next Generation Resource">
   <main
-    class="max-w-sm p-3 m-auto bg-orange-100 md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl"
+    class="max-w-sm p-3 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
   >
     <HeroImage
       client:load
-      imageUrl="./assets/hero.png"
+      imageUrl="./assets/hero.webp"
       backgroundPosition="bg-[50%_25%]"
     >
       <Title>
@@ -34,20 +36,52 @@ import "bootstrap-icons/font/bootstrap-icons.css";
         <FreeTrialButton />
       </div>
     </HeroImage>
-    <p>
-      Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Elementum
-      nisi quis eleifend quam adipiscing vitae. Praesent elementum facilisis leo
-      vel fringilla est ullamcorper eget nulla. Commodo quis imperdiet massa
-      tincidunt nunc. Ac placerat vestibulum lectus mauris ultrices. Eget mi
-      proin sed libero enim sed. Ac turpis egestas integer eget aliquet nibh
-      praesent. Quam viverra orci sagittis eu volutpat odio. Et sollicitudin ac
-      orci phasellus egestas tellus rutrum. Elementum integer enim neque
-      volutpat ac tincidunt vitae. Elementum nibh tellus molestie nunc non. Et
-      netus et malesuada fames. Sed augue lacus viverra vitae congue. Interdum
-      velit euismod in pellentesque. Ipsum consequat nisl vel pretium lectus
-      quam. Id faucibus nisl tincidunt eget nullam.
+    <p class="mt-2">
+      SNGR is a cutting-edge web application that utilizes the advanced
+      capabilities of GPT-4 technology to revolutionize the songwriting process.
+      By offering an intuitive platform to help you compose original songs, our
+      AI-driven assistant can generate meaningful and memorable lyrics based on
+      your input. Moreover, it can recommend captivating melodies that resonate
+      with your creative vision. With SNGR by your side, you can unleash your
+      full potential as a songwriter and seamlessly transform your ideas into
+      fully realized, emotionally impactful musical compositions.
     </p>
     <Heading>Innovative Features to Fuel Your Creativity</Heading>
+    <Grid>
+      <FeatureCard
+        client:load
+        title="AI-Generated Lyrics"
+        description="Enter keywords or themes, and let SNGR create unique, tailor-made lyrics for your songs."
+        paragraph="SNGR's AI-generated lyrics feature empowers you to create unique and engaging songs by leveraging the power of GPT-4 technology. Simply input keywords or themes, and our intelligent assistant will generate contextually relevant, emotionally resonant, and stylistically diverse lyrics that align with your vision. This innovative approach saves time and effort while sparking creativity, allowing you to focus on refining your ideas and crafting the perfect composition."
+        imageUrl="./assets/lyrics.webp"
+        linkText="Try it now"
+        />
+      <FeatureCard
+        client:load
+        title="Melody & Chord Suggestions"
+        description="Discover catchy melodies and chord progressions with our AI-based suggestions, customized to your preferences."
+        paragraph="With our AI-based melody and chord suggestions, SNGR makes it easy for you to discover the perfect tune to complement your lyrics. Our intelligent system analyzes your input, preferences, and popular patterns in music to generate catchy melodies and harmonic chord progressions that seamlessly blend with your song's theme and mood. This feature not only simplifies the songwriting process but also inspires you to experiment with new musical ideas and push your creative boundaries."
+        imageUrl="./assets/chords.webp"
+        linkText="Try it now"
+      />
+      <FeatureCard
+        client:load
+        title="Personalized Songwriting"
+        description="Fine-tune your creations with our user-friendly editing tools to make your songs truly your own."
+        paragraph="SNGR's personalized songwriting feature provides you with a user-friendly interface to fine-tune your creations and make them truly your own. Edit, format, and refine your lyrics, melodies, and chord progressions with ease, ensuring that your songs accurately reflect your unique artistic vision. By giving you full control over the creative process, SNGR enables you to produce polished, professional-quality compositions that resonate with your audience."
+        imageUrl="./assets/customize.webp"
+        linkText="Try it now"
+      />
+      <FeatureCard
+        client:load
+        title="Thriving Community"
+        description="Connect with fellow songwriters, share your creations, and gain valuable feedback within our vibrant and supportive SNGR community."
+        paragraph="SNGR's thriving community feature connects you with fellow songwriters, musicians, and music enthusiasts from around the world. Share your creations, exchange ideas, and gain valuable feedback within a vibrant and supportive environment that fosters collaboration, growth, and learning. By participating in the SNGR community, you can expand your network, refine your skills, and discover new opportunities for artistic expression and collaboration."
+        imageUrl="./assets/community.webp"
+        linkUrl="/community"
+        linkText="Explore"
+      />
+    </Grid>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Augue interdum velit

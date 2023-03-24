@@ -1,0 +1,75 @@
+---
+import Title from "../components/Title";
+import Heading from "../components/Heading";
+import Layout from "../layouts/Layout.astro";
+import FreeTrialButton from "../components/FreeTrialButton";
+import HeroImage from "../components/HeroImage";
+import Grid from "../components/Grid";
+import FeatureCard from "../components/FeatureCard";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Button from "../components/Button";
+---
+
+<Layout title="SNGR - Songwriter's Next Generation Resource">
+  <main
+    class="max-w-sm p-3 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+  >
+    <HeroImage
+      client:load
+      imageUrl="./assets/hero.webp"
+      backgroundPosition="bg-[50%_25%]"
+    >
+      <Title>
+        Oopsie! It's a <span
+          class="text-2xl font-black text-center text-transparent md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"
+        >
+          404
+        </span> page!
+      </Title>
+      <Heading>
+        You're not supposed to be in here...
+      </Heading>
+      <p class="p-2 text-center rounded-lg bg-orange-100/70">
+        
+      </p>
+      <div class="flex justify-center mt-4">
+        <a href="/"><Button>Take me home!</Button></a>
+      </div>
+    </HeroImage>
+  </main>
+</Layout>
+
+<style>
+  .text-gradient {
+    background-image: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  .instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

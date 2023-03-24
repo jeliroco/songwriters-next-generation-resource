@@ -29,14 +29,16 @@ const Header: React.FC<HeaderProps> = ({}) => {
     <>
       <header
         ref={HeaderRef}
-        className="fixed left-0 right-0 z-10 flex p-2 duration-300 ease-in-out bg-orange-400 opacity-0 -translate-y-14"
+        className="fixed left-0 right-0 flex p-2 duration-300 ease-in-out bg-orange-400 border-b-2 border-orange-500 opacity-0 z-[1000] -translate-y-14"
       >
         <div className="flex-1">
-          <Title textAlign="text-left">
-            <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
-              SNGR
-            </span>
-          </Title>
+          <a href="/">
+            <Title textAlign="text-left">
+              <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
+                SNGR
+              </span>
+            </Title>
+          </a>
         </div>
         <FreeTrialButton />
       </header>

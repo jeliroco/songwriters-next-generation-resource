@@ -1,0 +1,88 @@
+---
+import Title from "../components/Title";
+import Heading from "../components/Heading";
+import Layout from "../layouts/Layout.astro";
+import FreeTrialButton from "../components/FreeTrialButton";
+import HeroImage from "../components/HeroImage";
+import Grid from "../components/Grid";
+import FeatureCard from "../components/FeatureCard";
+import "bootstrap-icons/font/bootstrap-icons.css";
+---
+
+<Layout title="SNGR - Songwriter's Next Generation Resource">
+  <main
+    class="max-w-sm p-3 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+  >
+    <HeroImage
+      client:load
+      imageUrl="./assets/community.webp"
+      backgroundPosition="bg-[50%_25%]"
+    >
+      <Title>
+        The <span
+          class="text-2xl font-black text-center text-transparent md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"
+        >
+          SNGR
+        </span> Community
+      </Title>
+      <Heading>Join Our Global Community of Passionate Songwriters</Heading>
+      <p class="p-2 text-center rounded-lg bg-orange-100/70">
+        Discover a world of musical inspiration, make lasting connections, and
+        learn from talented creators like yourself.
+      </p>
+      <div class="flex justify-center mt-4">
+        <FreeTrialButton />
+      </div>
+    </HeroImage>
+    <p class="mt-2">
+      The SNGR Community is a vibrant and diverse global network of passionate
+      songwriters, musicians, and music enthusiasts, united by a love for
+      creative expression and the art of songwriting. By joining our community,
+      you'll gain access to invaluable resources, collaboration opportunities,
+      and inspiration from creators worldwide. Our platform fosters a supportive
+      and engaging environment where you can learn, grow, and refine your skills
+      while making lasting connections with like-minded individuals. Experience
+      the transformative power of collaboration and unlock your full potential
+      with the SNGR Community.
+    </p>
+    <Heading>Explore Our Thriving SNGR Community</Heading>
+    <Grid>
+      <FeatureCard
+        client:load
+        title="Collaboration Opportunities"
+        description="Connect with fellow songwriters and musicians to collaborate on projects, exchange ideas, and explore new creative possibilities."
+        paragraph="SNGR's AI-generated lyrics feature empowers you to create unique and engaging songs by leveraging the power of GPT-4 technology. Simply input keywords or themes, and our intelligent assistant will generate contextually relevant, emotionally resonant, and stylistically diverse lyrics that align with your vision. This innovative approach saves time and effort while sparking creativity, allowing you to focus on refining your ideas and crafting the perfect composition."
+        imageUrl="./assets/collaboration.webp"
+        linkUrl="/lyrics"
+        linkText="Try it now"
+      />
+      <FeatureCard
+        client:load
+        title="Valuable Feedback"
+        description="Share your work, receive constructive feedback from experienced creators, and refine your skills to reach your full potential."
+        paragraph="With our AI-based melody and chord suggestions, SNGR makes it easy for you to discover the perfect tune to complement your lyrics. Our intelligent system analyzes your input, preferences, and popular patterns in music to generate catchy melodies and harmonic chord progressions that seamlessly blend with your song's theme and mood. This feature not only simplifies the songwriting process but also inspires you to experiment with new musical ideas and push your creative boundaries."
+        imageUrl="./assets/feedback.webp"
+        linkUrl="/chords"
+        linkText="Try it now"
+      />
+      <FeatureCard
+        client:load
+        title="Educational Resources"
+        description="Access a wealth of learning materials, tutorials, and webinars designed to help you expand your knowledge and enhance your songwriting abilities."
+        paragraph="SNGR's personalized songwriting feature provides you with a user-friendly interface to fine-tune your creations and make them truly your own. Edit, format, and refine your lyrics, melodies, and chord progressions with ease, ensuring that your songs accurately reflect your unique artistic vision. By giving you full control over the creative process, SNGR enables you to produce polished, professional-quality compositions that resonate with your audience."
+        imageUrl="./assets/education.webp"
+        linkUrl="/customize"
+        linkText="Try it now"
+      />
+      <FeatureCard
+        client:load
+        title="Daily Inspiration"
+        description="Discover new music, stay updated on industry trends, and draw inspiration from the successes and journeys of fellow community members."
+        paragraph="SNGR's thriving community feature connects you with fellow songwriters, musicians, and music enthusiasts from around the world. Share your creations, exchange ideas, and gain valuable feedback within a vibrant and supportive environment that fosters collaboration, growth, and learning. By participating in the SNGR community, you can expand your network, refine your skills, and discover new opportunities for artistic expression and collaboration."
+        imageUrl="./assets/inspiration.webp"
+        linkUrl="/community"
+        linkText="Try it now"
+      />
+    </Grid>
+  </main>
+</Layout>
