@@ -4,10 +4,9 @@ import React, { useState } from "react";
 interface CardProps {
   front: React.ReactNode;
   back: React.ReactNode;
-  duration?: number;
 }
 
-const Card: React.FC<CardProps> = ({ front, back, duration = 500 }) => {
+const Card: React.FC<CardProps> = ({ front, back }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPhysicallyFlipped, setIsPhysicallyFlipped] = useState(false);
   const [isAnimating, setisAnimating] = useState(false);
@@ -18,16 +17,16 @@ const Card: React.FC<CardProps> = ({ front, back, duration = 500 }) => {
       setisAnimating(true);
       setTimeout(() => {
         setIsPhysicallyFlipped(!isPhysicallyFlipped);
-      }, duration * 0.35);
+      }, 500 * 0.35);
       setTimeout(() => {
         setisAnimating(false);
-      }, duration);
+      }, 500);
     }
   };
 
   return (
     <div
-      className={`cursor-pointer relative transition-transform ease-in-out duration-${duration.toString()} ${
+      className={`cursor-pointer relative transition-transform ease-in-out duration-500 ${
         isFlipped ? "-scale-x-100" : ""
       }`}
       onClick={handleClick}
