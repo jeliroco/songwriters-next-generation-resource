@@ -1,22 +1,109 @@
 ---
-import Title from "../components/Title.astro";
+import Title from "../components/Title";
 import Heading from "../components/Heading.astro";
 import Layout from "../layouts/Layout.astro";
+import FreeTrialButton from "../components/FreeTrialButton";
+import HeroImage from "../components/HeroImage";
+import "bootstrap-icons/font/bootstrap-icons.css";
 ---
 
 <Layout title="SNGR - Songwriter's Next Generation Resource">
-  <main class="max-w-sm p-3 m-auto bg-orange-100 md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl">
-    <Title>Welcome to the <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">SNGR</span> revolution.</Title>
-    <Heading>
-      Unleash Your Creativity with the Songwriter's Next Generation Resource
-    </Heading>
-    <p class="p-4 my-2 rounded-lg bg-orange-50">
-      SNGR harnesses the power of GPT-4 technology to help you craft original
-      songs, generate lyrics, and create captivating melodies.
+  <main
+    class="max-w-sm p-3 m-auto bg-orange-100 md:max-w-md lg:max-w-lg xl:max-w-3xl 2xl:max-w-6xl"
+  >
+    <HeroImage
+      client:load
+      imageUrl="./assets/hero.png"
+      backgroundPosition="bg-[50%_25%]"
+    >
+      <Title>
+        Welcome to the <span
+          class="text-2xl font-black text-center text-transparent md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"
+        >
+          SNGR
+        </span> revolution
+      </Title>
+      <Heading>
+        Unleash Your Creativity with the Songwriter's Next Generation Resource
+      </Heading>
+      <p class="p-2 text-center rounded-lg bg-orange-100/70">
+        SNGR harnesses the power of GPT-4 technology to help you craft original
+        songs, generate lyrics, and create captivating melodies.
+      </p>
+      <div class="flex justify-center mt-4">
+        <FreeTrialButton />
+      </div>
+    </HeroImage>
+    <p>
+      Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Elementum
+      nisi quis eleifend quam adipiscing vitae. Praesent elementum facilisis leo
+      vel fringilla est ullamcorper eget nulla. Commodo quis imperdiet massa
+      tincidunt nunc. Ac placerat vestibulum lectus mauris ultrices. Eget mi
+      proin sed libero enim sed. Ac turpis egestas integer eget aliquet nibh
+      praesent. Quam viverra orci sagittis eu volutpat odio. Et sollicitudin ac
+      orci phasellus egestas tellus rutrum. Elementum integer enim neque
+      volutpat ac tincidunt vitae. Elementum nibh tellus molestie nunc non. Et
+      netus et malesuada fames. Sed augue lacus viverra vitae congue. Interdum
+      velit euismod in pellentesque. Ipsum consequat nisl vel pretium lectus
+      quam. Id faucibus nisl tincidunt eget nullam.
     </p>
     <Heading>Innovative Features to Fuel Your Creativity</Heading>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Augue interdum velit
+      euismod in. Aliquet risus feugiat in ante. Et magnis dis parturient
+      montes. Tempor orci dapibus ultrices in iaculis nunc sed. Feugiat in
+      fermentum posuere urna nec tincidunt praesent semper. Faucibus vitae
+      aliquet nec ullamcorper. Maecenas pharetra convallis posuere morbi leo
+      urna molestie at elementum. Urna molestie at elementum eu. Scelerisque
+      purus semper eget duis at tellus. Sed felis eget velit aliquet sagittis.
+      Dolor magna eget est lorem ipsum dolor sit. Ut etiam sit amet nisl purus.
+      Sem et tortor consequat id porta nibh. Sit amet est placerat in. Suscipit
+      tellus mauris a diam maecenas sed enim ut. Interdum velit euismod in
+      pellentesque. Sit amet justo donec enim diam vulputate. Lectus urna duis
+      convallis convallis tellus id interdum velit laoreet. Sed tempus urna et
+      pharetra pharetra massa massa.
+    </p>
     <Heading>Trusted by Musicians and Songwriters Worldwide</Heading>
+    <p>
+      Nibh mauris cursus mattis molestie a iaculis at. Dolor sit amet
+      consectetur adipiscing elit. Massa vitae tortor condimentum lacinia quis
+      vel eros. Eget lorem dolor sed viverra ipsum nunc aliquet. Facilisi nullam
+      vehicula ipsum a. Fusce id velit ut tortor pretium. Neque sodales ut etiam
+      sit amet nisl. Quis enim lobortis scelerisque fermentum dui faucibus in
+      ornare. Bibendum arcu vitae elementum curabitur vitae nunc sed. Turpis
+      egestas maecenas pharetra convallis posuere morbi leo urna molestie.
+      Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
+      Mi quis hendrerit dolor magna eget est. Nibh sed pulvinar proin gravida
+      hendrerit lectus a. Consectetur libero id faucibus nisl tincidunt eget
+      nullam.
+    </p>
     <Heading>Choose the Perfect Plan for You</Heading>
+    <p>
+      Ac orci phasellus egestas tellus rutrum tellus. Mauris rhoncus aenean vel
+      elit scelerisque. Accumsan tortor posuere ac ut consequat semper viverra
+      nam libero. Sociis natoque penatibus et magnis dis parturient. Vestibulum
+      sed arcu non odio euismod. Facilisi morbi tempus iaculis urna id volutpat.
+      Dui nunc mattis enim ut tellus elementum sagittis. Amet nisl purus in
+      mollis nunc sed. Nulla pharetra diam sit amet nisl. Erat imperdiet sed
+      euismod nisi porta.
+    </p>
+    <p>
+      Libero justo laoreet sit amet cursus sit amet dictum sit. Elementum
+      facilisis leo vel fringilla est ullamcorper. In ante metus dictum at
+      tempor commodo ullamcorper. Maecenas sed enim ut sem viverra. Accumsan
+      tortor posuere ac ut consequat semper viverra. Aenean euismod elementum
+      nisi quis eleifend. Aliquam ultrices sagittis orci a scelerisque. Eleifend
+      donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum.
+      Facilisi nullam vehicula ipsum a arcu. Aliquam vestibulum morbi blandit
+      cursus risus at. Scelerisque in dictum non consectetur a erat nam at. Vel
+      facilisis volutpat est velit egestas dui id ornare arcu. Et ligula
+      ullamcorper malesuada proin libero nunc consequat interdum. Donec enim
+      diam vulputate ut pharetra sit amet. Quisque id diam vel quam elementum
+      pulvinar etiam. Metus dictum at tempor commodo ullamcorper a lacus
+      vestibulum sed. Malesuada bibendum arcu vitae elementum curabitur vitae
+      nunc.
+    </p>
   </main>
 </Layout>
 

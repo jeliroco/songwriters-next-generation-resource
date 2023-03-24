@@ -1,4 +1,7 @@
 ---
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 export interface Props {
 	title: string;
 }
@@ -16,7 +19,9 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="bg-orange-200">
+		<Header client:load/>
 		<slot />
+		<Footer client:load/>
 	</body>
 </html>
 <style is:global>
@@ -33,7 +38,7 @@ const { title } = Astro.props;
 		
 		--color-background: #F5F5F5;
 		
-		--color-text: #333333;
+		--color-text: #111111;
 		
 		--gradient-main: linear-gradient(45deg, var(--color-main-darker), var(--color-main-lighter) 30%, white 60%);
 	}
