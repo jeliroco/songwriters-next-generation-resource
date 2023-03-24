@@ -32,9 +32,10 @@ const Header: React.FC<HeaderProps> = ({}) => {
         className="fixed left-0 right-0 flex p-2 duration-300 ease-in-out bg-orange-400 border-b-2 border-orange-500 opacity-0 z-[1000] -translate-y-14"
       >
         <div className="flex-1">
-          <a href="/">
+          <a href="/" className="flex gap-1 align-center">
+            <img src="/assets/logo@128px.webp" alt="logo" className="h-10" />
             <Title textAlign="text-left">
-              <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
+              <span className="text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-700">
                 SNGR
               </span>
             </Title>
