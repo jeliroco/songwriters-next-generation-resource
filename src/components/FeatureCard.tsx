@@ -14,7 +14,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   title = "Title",
   description = "Description",
   paragraph = "Paragraph",
-  imageUrl = "./assets/chords.webp",
+  imageUrl = "./assets/melody.webp",
   linkText = "Go!",
   linkUrl,
 }) => {
