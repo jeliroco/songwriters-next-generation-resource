@@ -27,8 +27,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         >
           <div className="z-10 flex items-center justify-center flex-1">
             <h3
-              style={{ textShadow: "0px 0px 4px white" }}
-              className="py-2 font-bold text-center text-md md:text-lg lg:text-xl xl:text-2xl"
+              style={{ textShadow: "1px 1px 1px black" }}
+              className="py-2 font-black text-center text-orange-300 text-md md:text-lg lg:text-xl xl:text-2xl"
             >
               {title}
             </h3>

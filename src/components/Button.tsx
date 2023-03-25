@@ -6,6 +6,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, disabled }) => {
+
   if (disabled) {
     return (
       <button className="px-4 py-2 text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded opacity-50 cursor-not-allowed md:text-base">

@@ -1,17 +1,20 @@
 ---
 import Title from "../components/Title";
 import Heading from "../components/Heading";
-import Layout from "../layouts/Layout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 import FreeTrialButton from "../components/FreeTrialButton";
 import HeroImage from "../components/HeroImage";
 import Grid from "../components/Grid";
 import FeatureCard from "../components/FeatureCard";
+import Testimonial from "../components/Testimonial";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Table from "../components/Table";
+import pricingPlansTableData from "../data/pricingPlans";
 ---
 
-<Layout title="SNGR - Songwriter's Next Generation Resource">
+<PageLayout title="SNGR - Songwriter's Next Generation Resource">
   <main
-    class="max-w-sm p-3 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+    class="max-w-sm p-6 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
   >
     <HeroImage
       client:load
@@ -36,7 +39,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
         <FreeTrialButton />
       </div>
     </HeroImage>
-    <p class="mt-2">
+    <div class="h-6"></div>
+    <p class="max-w-prose m-auto p-4 bg-white/50 rounded-lg text-xs md:text-base">
       SNGR is a cutting-edge web application that utilizes the advanced
       capabilities of GPT-4 technology to revolutionize the songwriting process.
       By offering an intuitive platform to help you compose original songs, our
@@ -46,8 +50,12 @@ import "bootstrap-icons/font/bootstrap-icons.css";
       full potential as a songwriter and seamlessly transform your ideas into
       fully realized, emotionally impactful musical compositions.
     </p>
+    <div class="h-6"></div>
     <Heading>Innovative Features to Fuel Your Creativity</Heading>
-    <Grid>
+    <div class="h-12"></div>
+    <div
+      class="grid grid-cols-1 grid-rows-4 gap-4 md:grid-rows-2 md:grid-cols-2"
+    >
       <FeatureCard
         client:load
         title="AI-Generated Lyrics"
@@ -55,7 +63,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
         paragraph="SNGR's AI-generated lyrics feature empowers you to create unique and engaging songs by leveraging the power of GPT-4 technology. Simply input keywords or themes, and our intelligent assistant will generate contextually relevant, emotionally resonant, and stylistically diverse lyrics that align with your vision. This innovative approach saves time and effort while sparking creativity, allowing you to focus on refining your ideas and crafting the perfect composition."
         imageUrl="./assets/lyrics.webp"
         linkText="Try it now"
-        />
+      />
       <FeatureCard
         client:load
         title="Melody & Chord Suggestions"
@@ -69,7 +77,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
         title="Personalized Songwriting"
         description="Fine-tune your creations with our user-friendly editing tools to make your songs truly your own."
         paragraph="SNGR's personalized songwriting feature provides you with a user-friendly interface to fine-tune your creations and make them truly your own. Edit, format, and refine your lyrics, melodies, and chord progressions with ease, ensuring that your songs accurately reflect your unique artistic vision. By giving you full control over the creative process, SNGR enables you to produce polished, professional-quality compositions that resonate with your audience."
-        imageUrl="./assets/customize.webp"
+        imageUrl="./assets/songwriting.webp"
         linkText="Try it now"
       />
       <FeatureCard
@@ -81,38 +89,62 @@ import "bootstrap-icons/font/bootstrap-icons.css";
         linkUrl="/community"
         linkText="Explore"
       />
-    </Grid>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Augue interdum velit
-      euismod in. Aliquet risus feugiat in ante. Et magnis dis parturient
-      montes. Tempor orci dapibus ultrices in iaculis nunc sed. Feugiat in
-      fermentum posuere urna nec tincidunt praesent semper. Faucibus vitae
-      aliquet nec ullamcorper. Maecenas pharetra convallis posuere morbi leo
-      urna molestie at elementum. Urna molestie at elementum eu. Scelerisque
-      purus semper eget duis at tellus. Sed felis eget velit aliquet sagittis.
-      Dolor magna eget est lorem ipsum dolor sit. Ut etiam sit amet nisl purus.
-      Sem et tortor consequat id porta nibh. Sit amet est placerat in. Suscipit
-      tellus mauris a diam maecenas sed enim ut. Interdum velit euismod in
-      pellentesque. Sit amet justo donec enim diam vulputate. Lectus urna duis
-      convallis convallis tellus id interdum velit laoreet. Sed tempus urna et
-      pharetra pharetra massa massa.
-    </p>
+    </div>
+    <div class="h-12"></div>
     <Heading>Trusted by Musicians and Songwriters Worldwide</Heading>
-    <p>
-      Nibh mauris cursus mattis molestie a iaculis at. Dolor sit amet
-      consectetur adipiscing elit. Massa vitae tortor condimentum lacinia quis
-      vel eros. Eget lorem dolor sed viverra ipsum nunc aliquet. Facilisi nullam
-      vehicula ipsum a. Fusce id velit ut tortor pretium. Neque sodales ut etiam
-      sit amet nisl. Quis enim lobortis scelerisque fermentum dui faucibus in
-      ornare. Bibendum arcu vitae elementum curabitur vitae nunc sed. Turpis
-      egestas maecenas pharetra convallis posuere morbi leo urna molestie.
-      Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
-      Mi quis hendrerit dolor magna eget est. Nibh sed pulvinar proin gravida
-      hendrerit lectus a. Consectetur libero id faucibus nisl tincidunt eget
-      nullam.
-    </p>
+    <div class="h-12"></div>
+    <div
+      class="grid grid-cols-1 grid-rows-4 gap-4 md:grid-rows-2 md:grid-cols-2"
+    >
+      <Testimonial
+        name="Synthia Darque"
+        description="Producer"
+        quote="As a DJ, it's crucial to have access to fresh sounds and unique compositions. SNGR's AI-driven platform has helped me discover countless new tracks, giving me an edge in my sets. The community is fantastic, and I've collaborated with some incredible artists. SNGR is a game-changer!"
+        imageUrl="./assets/testimonial-dj.webp"
+      />
+      <Testimonial
+        name="Silver Streaks"
+        description="Band"
+        quote="We've always struggled with writer's block as a band, but SNGR has completely transformed our creative process. The AI-generated lyrics and chord suggestions sparked our inspiration, and the community has been invaluable for feedback and support. SNGR has truly helped us find our sound."
+        imageUrl="./assets/testimonial-band.webp"
+      />
+      <Testimonial
+        name="TruGrit"
+        description="Lyricist"
+        imageUrl="./assets/testimonial-rapper.webp"
+        quote="SNGR has been a lifesaver for me as a rapper! The AI-generated lyrics are an excellent starting point when I need a creative boost. The platform has connected me with other talented musicians, and the community vibe is empowering. I can't imagine my career without SNGR now."
+      />
+      <Testimonial
+        name="Harrison Blake"
+        description="Instrumentalist"
+        imageUrl="./assets/testimonial-bassist.webp"
+        quote="As a bassist, finding the right groove and rhythm is essential. SNGR's AI-based melody and chord suggestions have opened up new possibilities for me, allowing me to experiment with different styles and genres. The community is full of inspiration, and I've made some amazing connections. SNGR is a must-have for any musician!"
+      />
+    </div>
+    <div class="h-12"></div>
     <Heading>Choose the Perfect Plan for You</Heading>
+    <div class="h-6"></div>
+    <p class="max-w-prose m-auto p-4 bg-white/50 rounded-lg text-xs md:text-base">
+      At SNGR, we are constantly working to improve and expand our platform to
+      provide the best experience for our users. Currently, all features of SNGR
+      are available to everyone free of charge. However, as we continue to grow
+      and develop our innovative songwriting tools, we plan to introduce paid
+      tiers in the future. These paid plans will offer additional features,
+      resources, and priority support to further enhance your songwriting
+      journey. Rest assured, we remain committed to providing an accessible and
+      valuable experience for all users, and we will continue to offer a free
+      option that caters to the needs of aspiring songwriters and musicians.
+      Stay tuned for updates on our upcoming pricing plans and exciting new
+      features!
+    </p>
+    <div class="h-12"></div>
+    <div class="bg-blue-200 border-2 border-blue-300 overflow-auto h-[24em] md:h-[32em]">
+      <Table
+        headData={pricingPlansTableData.headData}
+        bodyData={pricingPlansTableData.bodyData}
+      />
+    </div>
+
     <p>
       Ac orci phasellus egestas tellus rutrum tellus. Mauris rhoncus aenean vel
       elit scelerisque. Accumsan tortor posuere ac ut consequat semper viverra
@@ -139,39 +171,4 @@ import "bootstrap-icons/font/bootstrap-icons.css";
       nunc.
     </p>
   </main>
-</Layout>
-
-<style>
-  .text-gradient {
-    background-image: var(--gradient-main);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
-</style>
+</PageLayout>
