@@ -47,13 +47,13 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   return (
     <div>
       <form
-        className="flex flex-col gap-2 p-2 m-2 border-2 bg-white/50 border-orange-200 rounded-md"
+        className="text-xs md:text-base flex flex-col gap-2 p-2 m-2 border-2 bg-white/50 border-orange-200 rounded-md"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <label className="flex gap-2 items-center text-right justify-center">
+        <label className="flex flex-col md:flex-row gap-2 items-center text-center md:text-right justify-center">
           <div className="w-24 font-bold">Adjectives</div>
           <input
             className="flex-1 p-1 border-2 rounded-md"
@@ -62,7 +62,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
             onChange={(e) => setAdjectiveInput(e.target.value)}
           />
         </label>
-        <label className="flex gap-2 items-center text-right justify-center">
+        <label className="flex flex-col md:flex-row gap-2 items-center text-center md:text-right justify-center">
           <div className="w-24 font-bold">Topic</div>
           <input
             className="flex-1 p-1 border-2 rounded-md"
@@ -71,7 +71,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
             onChange={(e) => setTopicInput(e.target.value)}
           />
         </label>
-        <label className="flex gap-2 items-center text-right justify-center">
+        <label className="flex flex-col md:flex-row gap-2 items-center text-center md:text-right justify-center">
           <div className="w-24 font-bold">Style</div>
           <input
             className="flex-1 p-1 border-2 rounded-md"
@@ -80,7 +80,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
             onChange={(e) => setStyleInput(e.target.value)}
           />
         </label>
-        <div className="text-center my-4">
+        <div className="text-xs md:text-base text-center my-4 leading-10">
           Write me a{" "}
           <span className="bg-blue-100 border-2 border-blue-200 p-1 rounded-lg text-blue-500">
             {adjectiveInput ?? "random"}
@@ -89,7 +89,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           <span className="bg-blue-100 border-2 border-blue-200 p-1 rounded-lg text-blue-500">
             {topicInput ?? "music"}
           </span>{" "}
-          , in the style of{" "}
+          in the style of{" "}
           <span className="bg-blue-100 border-2 border-blue-200 p-1 rounded-lg text-blue-500">
             {styleInput ?? "rock"}
           </span>
