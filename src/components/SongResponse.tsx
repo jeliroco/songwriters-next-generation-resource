@@ -102,7 +102,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         />
       </form>
       {isWriting && (
-        <div className="max-w-prose rounded-lg m-auto p-2 bg-white/50">
+        <div className="text-xs md:text-base max-w-prose rounded-lg m-auto p-2 bg-white/50">
           <p className="whitespace-pre-line">
             {isReady ? lyrics : "Loading..."}
           </p>
