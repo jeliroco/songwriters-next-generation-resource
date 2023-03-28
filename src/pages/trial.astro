@@ -1,0 +1,57 @@
+---
+import Title from "../components/Title";
+import Heading from "../components/Heading";
+import PageLayout from "../layouts/PageLayout.astro";
+import FreeTrialButton from "../components/FreeTrialButton";
+import HeroImage from "../components/HeroImage";
+import Grid from "../components/Grid";
+import FeatureCard from "../components/FeatureCard";
+import Testimonial from "../components/Testimonial";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Table from "../components/Table";
+import pricingPlansTableData from "../data/pricingPlans";
+import SongResponse from "../components/SongResponse";
+import { Configuration, OpenAIApi } from "openai";
+
+const configuration = new Configuration({
+  organization: "org-5fAzexFce62JVb72nbZCzT9U",
+  apiKey: import.meta.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+---
+
+<PageLayout title="SNGR - Songwriter's Next Generation Resource">
+  <main
+    class="max-w-sm p-6 m-auto bg-orange-100 border-2 border-orange-400 sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-6xl"
+  >
+    <HeroImage
+      client:load
+      imageUrl="./assets/trial.webp"
+      backgroundPosition="bg-[50%_25%]"
+    >
+      <Title>
+        <span
+          class="text-2xl font-black text-center text-transparent md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600"
+        >
+          SNGR
+        </span>
+      </Title>
+      <Heading>Experience the Power of SNGR: Try Our Vertical Slice</Heading>
+    </HeroImage>
+    <div class="h-6"></div>
+    <p
+      class="max-w-prose m-auto p-4 bg-white/50 rounded-lg text-xs md:text-base"
+    >
+      At SNGR, we're constantly evolving and working diligently to bring you the
+      most cutting-edge songwriting tools and resources. Our dedicated team is
+      always developing new features and refining the platform to ensure the
+      best possible experience for our users. While we have many exciting
+      updates in the pipeline, we're proud to present a vertical slice of our
+      current offerings. This snapshot showcases the core functionality and
+      potential of SNGR, providing a solid foundation for your songwriting
+      journey. Stay tuned for regular updates as we continue to expand and
+      enhance the SNGR experience!
+    </p>
+    <SongResponse client:load />
+  </main>
+</PageLayout>
