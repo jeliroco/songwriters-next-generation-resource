@@ -34,7 +34,7 @@ const HeroImage: React.FC<HeroImageProps> = ({
         className={`absolute inset-0 w-full h-full ${backgroundPosition} bg-cover bg-no-repeat`}
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        <div className="absolute inset-0 mix-blend-lighten bg-white/50"></div>
+        <div className="absolute inset-0 bg-white/75"></div>
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <div>{children}</div>
         </div>

@@ -1,9 +1,9 @@
-interface TitleProps {
+interface HeadingProps {
   children?: React.ReactNode;
   textAlign?: string;
 }
 
-const Title: React.FC<TitleProps> = ({
+const Heading: React.FC<HeadingProps> = ({
   children,
   textAlign = "text-center",
 }) => {
@@ -14,4 +14,4 @@ const Title: React.FC<TitleProps> = ({
   );
 };
 
-export default Title;
+export default Heading;

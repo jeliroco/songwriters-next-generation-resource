@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 import { useEffect, useState } from "react";
-
+import Heading from "./Heading";
 const configuration = new Configuration({
   organization: "org-5fAzexFce62JVb72nbZCzT9U",
   apiKey: import.meta.env.OPENAI_API_KEY,
@@ -47,12 +47,21 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   return (
     <div>
       <form
-        className="text-xs md:text-base flex flex-col gap-2 p-2 m-2 border-2 bg-white/50 border-orange-200 rounded-md"
+        className="text-sm md:text-base flex flex-col gap-2 p-2 m-2 border-2 bg-white/50 border-orange-200 rounded-md"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
+        <Heading>Lyrical Inspiration Generator</Heading>
+        <p className="max-w-prose m-auto text-center">
+          Input any adjectives, topics, and styles that you want your song to be
+          based on. This will guide the AI in generating lyrics that are
+          personalized for you.
+        </p>
+        <p className="max-w-prose m-auto text-center">
+          When you're ready, click the button below to generate your lyrics.
+        </p>
         <label className="flex flex-col md:flex-row gap-2 items-center text-center md:text-right justify-center">
           <div className="w-24 font-bold">Adjectives</div>
           <input
@@ -102,9 +111,9 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         />
       </form>
       {isWriting && (
-        <div className="text-xs md:text-base max-w-prose rounded-lg m-auto p-2 bg-white/50">
+        <div className="text-sm md:text-base max-w-prose rounded-lg m-auto p-2 bg-white/50">
           <p className="whitespace-pre-line">
-            {isReady ? lyrics : "Loading..."}
+            {isReady ? lyrics : "Loading... This might take a minute..."}
           </p>
         </div>
       )}
