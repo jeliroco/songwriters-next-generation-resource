@@ -18,7 +18,7 @@ const Table: React.FC<TableProps> = ({ headData, bodyData }) => {
       <thead className="sticky top-0">
       <tr>
           {headData?.map((data, index) => (
-            <th className="odd:bg-blue-100 even:bg-blue-200 p-2 md:p-4 text-center" key={index}>{data}</th>
+            <th className="p-2 text-center odd:bg-blue-100 even:bg-blue-200 md:p-4" key={index}>{data}</th>
           ))}
         </tr>
         <tr>
@@ -29,7 +29,7 @@ const Table: React.FC<TableProps> = ({ headData, bodyData }) => {
         {bodyData?.map((data, index) => (
           <tr key={index}>
             {data.map((data, index) => (
-              <td className="odd:bg-blue-100 even:bg-blue-200 p-2 md:p-4 text-center" key={index}>{getProcessedCell(data)}</td>
+              <td className="p-2 text-center odd:bg-blue-100 even:bg-blue-200 md:p-4" key={index}>{getProcessedCell(data)}</td>
             ))}
           </tr>
         ))}
