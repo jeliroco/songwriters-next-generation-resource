@@ -1,31 +1,26 @@
 import { Configuration, OpenAIApi } from "openai";
 import { useEffect, useState } from "react";
 import Heading from "./Heading";
-const configuration = new Configuration({
-  organization: "org-5fAzexFce62JVb72nbZCzT9U",
-  apiKey: import.meta.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 interface SongResponseProps {}
 
+type SongResponseState = "idle" | "writing" | "timeout";
+
 const SongResponse: React.FC<SongResponseProps> = ({}) => {
-  const [isWriting, setIsWriting] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [state, setState] = useState<SongResponseState>("idle");
   const [lyrics, setLyrics] = useState("");
   const [error, setError] = useState("");
-  const [isTimedOut, setIsTimedOut] = useState(false);
   const [timeOutTime, setTimeOutTime] = useState(0);
-  const rateLimitTime = 120;
+  const rateLimitTime = 5;
   let timeoutId: number | undefined;
 
   const [adjectiveInput, setAdjectiveInput] = useState("random");
   const [topicInput, setTopicInput] = useState("music");
   const [styleInput, setStyleInput] = useState("rock");
 
+  // OPENAI API LOGIC
   async function getOpenaiResponse() {
-    setIsWriting(true);
-    setIsReady(false);
+    setState("writing");
     setError("");
     const request: RequestInit = {
       method: "POST",
@@ -73,43 +68,39 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           data?.choices[0]?.text?.trim() ??
             "There was an error. Please try again."
         );
-        setIsReady(true);
-        setIsWriting(false);
-        setIsTimedOut(true);
+        setState("timeout");
       })
       .catch((error) => {
         setError(error.message);
-        setIsReady(false);
-        setIsWriting(false);
+        setState("idle");
         return null;
       });
   }
-
+  
+  // TIMEOUT LOGIC
+  // start the timeout timer when the state changes to "timeout"
   useEffect(() => {
-    if (isTimedOut) {
+    if (state == "timeout") {
       setTimeOutTime(rateLimitTime);
     }
-  }, [isTimedOut]);
-
+  }, [state]);
+  // Handle the timer ticking down to zero
   useEffect(() => {
     if (timeOutTime !== 0) {
       timeoutId = setTimeout(() => {
         setTimeOutTime((prevSeconds) => prevSeconds - 1);
-        if (timeOutTime === 0) {
-          setIsTimedOut(false);
-          clearTimeout(timeoutId);
-        }
       }, 1000);
-    }
-    else {
-      setIsTimedOut(false);
+    } else {
+      clearTimeout(timeoutId);
+      setState("idle");
     }
   }, [timeOutTime]);
-
+  // Clear the timeout timer when the component unmounts
   useEffect(() => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  // DOWNLOAD LOGIC
   const downloadTxtFile = () => {
     const filename = "song.txt";
     const blob = new Blob([lyrics], { type: "text/plain" });
@@ -188,14 +179,14 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           </span>
           .
         </div>
-        {!isWriting && !isTimedOut && (
+        {state == "idle" && (
           <input
             className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer md:text-base hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800"
             type="submit"
             value="Write me a song!"
           />
         )}
-        {isWriting && !isTimedOut && (
+        {state === "writing" && (
           <input
             className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded opacity-50 cursor-not-allowed md:text-base"
             type="submit"
@@ -203,7 +194,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
             value="Writing..."
           />
         )}
-        {isTimedOut && (
+        {state === "timeout" && timeOutTime > 0 && (
           <input
             className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded opacity-50 cursor-not-allowed md:text-base"
             type="submit"
@@ -212,10 +203,13 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           />
         )}
       </form>
-      {isReady && (
+      {lyrics && (
         <div className="p-2 m-auto text-sm rounded-lg md:text-base max-w-prose bg-white/50">
           <div className="flex justify-end">
-            <button onClick={downloadTxtFile} className="p-2 text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800">
+            <button
+              onClick={downloadTxtFile}
+              className="p-2 text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800"
+            >
               Download <i className="bi bi-download"></i>
             </button>
           </div>
