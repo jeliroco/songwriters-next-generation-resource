@@ -16,7 +16,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   const [error, setError] = useState("");
   const [isTimedOut, setIsTimedOut] = useState(false);
   const [timeOutTime, setTimeOutTime] = useState(0);
-  const rateLimitTime = 60;
+  const rateLimitTime = 120;
   let timeoutId: number | undefined;
 
   const [adjectiveInput, setAdjectiveInput] = useState("random");
@@ -100,6 +100,9 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           clearTimeout(timeoutId);
         }
       }, 1000);
+    }
+    else {
+      setIsTimedOut(false);
     }
   }, [timeOutTime]);
 
