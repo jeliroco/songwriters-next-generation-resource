@@ -1,6 +1,7 @@
 {
   "functions": {
-    "pages/api/openai.ts": {
+    "directory": "src/pages/api",
+    "openai.ts": {
       "maxDuration": 60
     }
   }
