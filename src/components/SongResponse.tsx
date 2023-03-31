@@ -11,12 +11,14 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   const [lyrics, setLyrics] = useState("");
   const [error, setError] = useState("");
   const [timeOutTime, setTimeOutTime] = useState(0);
-  const rateLimitTime = 5;
+  const rateLimitTime = 120;
   let timeoutId: number | undefined;
 
   const [adjectiveInput, setAdjectiveInput] = useState("random");
   const [topicInput, setTopicInput] = useState("music");
   const [styleInput, setStyleInput] = useState("rock");
+
+  const [songTitleInput, setSongTitleInput] = useState("");
 
   // OPENAI API LOGIC
   async function getOpenaiResponse() {
@@ -76,7 +78,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         return null;
       });
   }
-  
+
   // TIMEOUT LOGIC
   // start the timeout timer when the state changes to "timeout"
   useEffect(() => {
@@ -102,7 +104,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
 
   // DOWNLOAD LOGIC
   const downloadTxtFile = () => {
-    const filename = "song.txt";
+    const filename = `${songTitleInput !== "" ? songTitleInput : "sngr-lyrics"}.txt`;
     const blob = new Blob([lyrics], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -205,14 +207,21 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
       </form>
       {lyrics && (
         <div className="p-2 m-auto text-sm rounded-lg md:text-base max-w-prose bg-white/50">
-          <div className="flex justify-end">
+          <label className="flex flex-col items-center justify-center gap-2 text-center md:flex-row md:text-right">
+            <div className="hidden font-bold">Title</div>
+            <input
+              className="flex-1 p-1 border-2 rounded-md"
+              type="text"
+              placeholder="sngr-lyrics.txt"
+              onChange={(e) => setSongTitleInput(e.target.value)}
+            />
             <button
               onClick={downloadTxtFile}
               className="p-2 text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800"
             >
               Download <i className="bi bi-download"></i>
             </button>
-          </div>
+          </label>
           <p className="whitespace-pre-line">{lyrics}</p>
         </div>
       )}
