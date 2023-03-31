@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/openai.ts": {
+    "pages/api/openai.ts": {
       "maxDuration": 60
     }
   }
