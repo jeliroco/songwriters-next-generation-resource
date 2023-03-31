@@ -13,6 +13,11 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   const [isWriting, setIsWriting] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [lyrics, setLyrics] = useState("");
+  const [error, setError] = useState("");
+  const [isTimedOut, setIsTimedOut] = useState(false);
+  const [timeOutTime, setTimeOutTime] = useState(0);
+  const rateLimitTime = 60;
+  let timeoutId: number | undefined;
 
   const [adjectiveInput, setAdjectiveInput] = useState("random");
   const [topicInput, setTopicInput] = useState("music");
@@ -21,6 +26,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
   async function getOpenaiResponse() {
     setIsWriting(true);
     setIsReady(false);
+    setError("");
     const request: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,15 +36,90 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         style: styleInput,
       }),
     };
-    const data = await fetch("/openai.json", request).then((response) =>
-      response.json()
-    );
-    setLyrics(
-      data?.choices[0]?.text?.trim() ?? "There was an error. Please try again."
-    );
-    setIsReady(true);
-    //console.log(data?.choices[0]?.text);
+    await fetch("/openai.json", request)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          let statusText;
+          switch (response.status) {
+            case 401:
+              statusText =
+                "Something has gone wrong with our OpenAI API key. Please try again later.";
+              break;
+            case 403:
+              statusText = "Forbidden";
+              break;
+            case 404:
+              statusText = "Not Found";
+              break;
+            case 429:
+              statusText =
+                "The OpenAI API is overloaded. Please try again later.";
+              break;
+            case 500:
+              statusText =
+                "The OpenAI servers are down. Please try again later.";
+              break;
+            default:
+              statusText = response.statusText;
+              break;
+          }
+          throw new Error(`Error ${response.status}: ${statusText}`);
+        }
+      })
+      .then((data) => {
+        setLyrics(
+          data?.choices[0]?.text?.trim() ??
+            "There was an error. Please try again."
+        );
+        setIsReady(true);
+        setIsWriting(false);
+        setIsTimedOut(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsReady(false);
+        setIsWriting(false);
+        return null;
+      });
   }
+
+  useEffect(() => {
+    if (isTimedOut) {
+      setTimeOutTime(rateLimitTime);
+    }
+  }, [isTimedOut]);
+
+  useEffect(() => {
+    if (timeOutTime !== 0) {
+      timeoutId = setTimeout(() => {
+        setTimeOutTime((prevSeconds) => prevSeconds - 1);
+        if (timeOutTime === 0) {
+          setIsTimedOut(false);
+          clearTimeout(timeoutId);
+        }
+      }, 1000);
+    }
+  }, [timeOutTime]);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const downloadTxtFile = () => {
+    const filename = "song.txt";
+    const element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(lyrics)
+    );
+    element.setAttribute("download", filename);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
 
   const handleSubmit = () => {
     getOpenaiResponse();
@@ -104,20 +185,45 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
           </span>
           .
         </div>
-        <input
-          className="px-4 py-2 m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer md:text-base hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800"
-          type="submit"
-          value="Write me a song!"
-        />
+        {!isWriting && !isTimedOut && (
+          <input
+            className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer md:text-base hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800"
+            type="submit"
+            value="Write me a song!"
+          />
+        )}
+        {isWriting && !isTimedOut && (
+          <input
+            className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded opacity-50 cursor-not-allowed md:text-base"
+            type="submit"
+            disabled
+            value="Writing..."
+          />
+        )}
+        {isTimedOut && (
+          <input
+            className="px-4 py-2 w-[200px] m-auto text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded opacity-50 cursor-not-allowed md:text-base"
+            type="submit"
+            disabled
+            value={`Wait ${timeOutTime} seconds...`}
+          />
+        )}
       </form>
-      {isWriting && (
+      {isReady && (
         <div className="p-2 m-auto text-sm rounded-lg md:text-base max-w-prose bg-white/50">
-          <p className="whitespace-pre-line">
-            {isReady ? lyrics : "Loading... This might take a minute..."}
-          </p>
+          <div className="flex justify-end">
+            <button onClick={downloadTxtFile} className="p-2 text-xs font-bold text-white bg-blue-500 border-2 border-blue-600 rounded cursor-pointer hover:bg-blue-600 focus:bg-blue-700 hover:border-blue-700 focus:border-blue-800">
+              Download <i className="bi bi-download"></i>
+            </button>
+          </div>
+          <p className="whitespace-pre-line">{lyrics}</p>
         </div>
       )}
-      {!isWriting && <div className="h-24"></div>}
+      {error && (
+        <div className="max-w-sm p-2 m-auto text-sm text-center rounded-lg md:text-base bg-red-500/50">
+          <p className="whitespace-pre-line">{error}</p>
+        </div>
+      )}
     </div>
   );
 };
