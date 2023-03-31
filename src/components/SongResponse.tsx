@@ -36,7 +36,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         style: styleInput,
       }),
     };
-    await fetch("/openai.json", request)
+    await fetch("/api/openai", request)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
