@@ -33,12 +33,11 @@ export const post: APIRoute = async function post({ params, request }) {
     artist's signature style, including their tone, theme, lyrical 
     structure, and musical elements. Be sure to seamlessly integrate 
     these elements to create a song that is both familiar and new. 
-    Avoid using the names of the artists being emulated in the lyrics, 
-    while still capturing their essence. Your song should appeal to 
-    fans of each artist, while also standing out as a unique and 
-    innovative piece of work. 
+    Your song should appeal to fans of each artist, while also standing 
+    out as a unique and innovative piece of work. 
 
     Do not suggest keys, chords, or time signaures.
+    Absolutely do not use the names of any of the artists in the list.
     `;
 
     // Propose a key and a time signature for the whole song.
