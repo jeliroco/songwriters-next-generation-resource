@@ -51,8 +51,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
                 </Button>
               </a>
             )}
-            {!linkUrl && <Button disabled={true}>Coming Soon...</Button>}
-          </div>
+=          </div>
         </div>
       }
     />

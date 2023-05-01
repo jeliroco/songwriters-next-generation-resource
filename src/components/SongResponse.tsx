@@ -67,7 +67,7 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
       })
       .then((data) => {
         setLyrics(
-          data?.choices[0]?.text?.trim() ??
+          data?.choices[0]?.message?.content?.trim() ??
             "There was an error. Please try again."
         );
         setState("timeout");
