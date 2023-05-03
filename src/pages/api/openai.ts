@@ -15,30 +15,28 @@ export const post: APIRoute = async function post({ params, request }) {
     const adjective = body.adjective ?? "random";
     const topic = body.topic ?? "music";
     const style = body.style ?? "rock";
-    const prompt = `Write me an ${adjective} song about ${topic}, in the style of ${style}. 
-
-    Create the song by combining the styles of the following artists:
-    The Beatles; 
-    Queen; 
-    Kendrick Lamar; 
-    Elton John; 
-    Taylor Swift; 
-    Edgar Allan Poe; 
-    Robert Frost; 
-    Nirvana. 
-    
-    Analyze the lyrics and musical characteristics of each artist 
-    and use this information to develop a cohesive and original piece 
-    of work. Your AI-generated song should incorporate elements of each 
-    artist's signature style, including their tone, theme, lyrical 
-    structure, and musical elements. Be sure to seamlessly integrate 
-    these elements to create a song that is both familiar and new. 
-    Your song should appeal to fans of each artist, while also standing 
-    out as a unique and innovative piece of work. 
-
+    const prompt = `Write me an ${adjective} song about ${topic}, in the style of ${style}.
     Do not suggest keys, chords, or time signaures.
-    Absolutely do not use the names of any of the artists in the list.
     `;
+
+    // Create the song by combining the styles of the following artists:
+    // The Beatles; 
+    // Queen; 
+    // Kendrick Lamar; 
+    // Elton John; 
+    // Taylor Swift; 
+    // Edgar Allan Poe; 
+    // Robert Frost; 
+    // Nirvana. 
+    
+    // Analyze the lyrics and musical characteristics of each artist 
+    // and use this information to develop a cohesive and original piece 
+    // of work. Your AI-generated song should incorporate elements of each 
+    // artist's signature style, including their tone, theme, lyrical 
+    // structure, and musical elements. Be sure to seamlessly integrate 
+    // these elements to create a song that is both familiar and new. 
+    // Your song should appeal to fans of each artist, while also standing 
+    // out as a unique and innovative piece of work. 
 
     // Propose a key and a time signature for the whole song.
     // For each section, propose a chord progression. The progression can be different for each section.
@@ -53,6 +51,7 @@ export const post: APIRoute = async function post({ params, request }) {
     // - Chorus (4 lines)
     // - Breakdown
     // - Outro
+
     try {
       // const completion = await openai.createChatCompletion({
       //   model: "gpt-4",
