@@ -54,18 +54,18 @@ export const post: APIRoute = async function post({ params, request }) {
     // - Breakdown
     // - Outro
     try {
-      const completion = await openai.createChatCompletion({
-        model: "gpt-4",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.9,
-        max_tokens: 500,
-      });
-      // const completion = await openai.createCompletion({
-      //   model: "text-davinci-003",
-      //   prompt,
+      // const completion = await openai.createChatCompletion({
+      //   model: "gpt-4",
+      //   messages: [{ role: "user", content: prompt }],
       //   temperature: 0.9,
-      //   max_tokens: 1000,
+      //   max_tokens: 500,
       // });
+      const completion = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt,
+        temperature: 0.9,
+        max_tokens: 1000,
+      });
       return new Response(JSON.stringify(completion.data), {
         status: 200,
         headers: {
