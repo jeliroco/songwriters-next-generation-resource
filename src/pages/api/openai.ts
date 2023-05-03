@@ -15,7 +15,8 @@ export const post: APIRoute = async function post({ params, request }) {
     const adjective = body.adjective ?? "random";
     const topic = body.topic ?? "music";
     const style = body.style ?? "rock";
-    const prompt = `Write me an ${adjective} song about ${topic}, in the style of ${style}.
+    const prompt = `
+    Write me an ${adjective} song about ${topic}, in the style of ${style}.
     Do not suggest keys, chords, or time signaures.
     `;
 
@@ -63,7 +64,7 @@ export const post: APIRoute = async function post({ params, request }) {
         model: "text-davinci-003",
         prompt,
         temperature: 0.9,
-        max_tokens: 1000,
+        max_tokens: 4000,
       });
       return new Response(JSON.stringify(completion.data), {
         status: 200,
