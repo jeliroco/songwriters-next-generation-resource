@@ -58,7 +58,7 @@ export const post: APIRoute = async function post({ params, request }) {
         model: "gpt-4",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.9,
-        max_tokens: 1000,
+        max_tokens: 500,
       });
       // const completion = await openai.createCompletion({
       //   model: "text-davinci-003",
