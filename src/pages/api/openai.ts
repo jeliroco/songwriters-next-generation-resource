@@ -18,6 +18,12 @@ export const post: APIRoute = async function post({ params, request }) {
     const prompt = `
     Write me an ${adjective} song about ${topic}, in the style of ${style}.
     Do not suggest keys, chords, or time signaures.
+    Represent all section titles (Verse, Chorus, Bridge, etc.) with the following format:
+    # SECTION_TITLE
+    For example:
+    # Verse 1
+    # Chorus
+    # Bridge
     `;
 
     // Create the song by combining the styles of the following artists:

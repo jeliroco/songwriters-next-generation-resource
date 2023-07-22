@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 import { useEffect, useState } from "react";
 import Heading from "./Heading";
+import ReactMarkdown from "react-markdown";
 
 interface SongResponseProps {}
 
@@ -72,6 +73,16 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
             "There was an error. Please try again."
         );
         setState("timeout");
+        // scroll to the lyrics
+        setTimeout(() => {
+          const yOffset = -64;
+          const element = document.getElementById("lyrics");
+          const y =
+            (element?.getBoundingClientRect()?.top ?? 0) +
+            window.scrollY +
+            yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }, 1);
       })
       .catch((error) => {
         setError(error.message);
@@ -105,7 +116,9 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
 
   // DOWNLOAD LOGIC
   const downloadTxtFile = () => {
-    const filename = `${songTitleInput !== "" ? songTitleInput : "sngr-lyrics"}.txt`;
+    const filename = `${
+      songTitleInput !== "" ? songTitleInput : "sngr-lyrics"
+    }.txt`;
     const blob = new Blob([lyrics], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -207,7 +220,10 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
         )}
       </form>
       {lyrics && (
-        <div className="p-2 m-auto text-sm rounded-lg md:text-base max-w-prose bg-white/50">
+        <div
+          id="lyrics"
+          className="p-2 m-auto text-sm rounded-lg md:text-base max-w-prose bg-white/50"
+        >
           <label className="flex flex-col items-center justify-center gap-2 text-center md:flex-row md:text-right">
             <div className="hidden font-bold">Title</div>
             <input
@@ -223,7 +239,21 @@ const SongResponse: React.FC<SongResponseProps> = ({}) => {
               Download <i className="bi bi-download"></i>
             </button>
           </label>
-          <p className="whitespace-pre-line">{lyrics}</p>
+          <ReactMarkdown
+            children={lyrics}
+            components={{
+              h1: ({ node, ...props }) => (
+                <h3
+                  className="py-2 font-bold text-center text-md md:text-lg"
+                  {...props}
+                />
+              ),
+              p: ({ node, ...props }) => (
+                <p className="whitespace-pre-line text-center" {...props} />
+              ),
+              br: ({ node, ...props }) => <br className="h-0" {...props} />,
+            }}
+          />
         </div>
       )}
       {error && (
