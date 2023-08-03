@@ -41,7 +41,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       }
       back={
         <div className="flex flex-col items-stretch p-4 overflow-y-auto bg-blue-200 bg-center bg-no-repeat bg-cover border-2 border-blue-300 rounded-lg aspect-square sm:aspect-video md:aspect-square 2xl:aspect-video justify-stretch">
-          <p className="flex-1 mb-2 text-xs sm:text-sm lg:text-base" >{paragraph}</p>
+          <p className="flex-1 mb-2 text-xs sm:text-sm lg:text-base">
+            {paragraph}
+          </p>
           <div className="flex items-end justify-end">
             {linkUrl && (
               <a href={linkUrl}>
@@ -51,7 +53,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
                 </Button>
               </a>
             )}
-=          </div>
+          </div>
         </div>
       }
     />
